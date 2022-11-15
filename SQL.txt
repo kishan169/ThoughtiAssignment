@@ -1,0 +1,60 @@
+mysql> use itemdb;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_itemdb   |
++--------------------+
+| hibernate_sequence |
+| item               |
+| orders             |
+| orders_items       |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> desc item;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| item_id         | int          | NO   | PRI | NULL    |       |
+| item_name       | varchar(255) | YES  |     | NULL    |       |
+| item_quantity   | int          | YES  |     | NULL    |       |
+| item_unit_price | double       | YES  |     | NULL    |       |
+| order_id        | int          | YES  | MUL | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc orders;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| order_id     | int          | NO   | PRI | NULL    |       |
+| order_date   | date         | YES  |     | NULL    |       |
+| order_status | varchar(255) | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----------+------------+--------------+
+| order_id | order_date | order_status |
++----------+------------+--------------+
+|        5 | 2022-06-12 | Yes          |
+|        6 | 2022-06-12 | Yes          |
+|        9 | 2022-06-12 | Yes          |
+|       12 | 2020-06-11 | Yes          |
++----------+------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from item;
++---------+-----------+---------------+-----------------+----------+
+| item_id | item_name | item_quantity | item_unit_price | order_id |
++---------+-----------+---------------+-----------------+----------+
+|       3 | Speaker   |             4 |            2999 |     NULL |
+|       4 | Blutooth  |             3 |          1999.5 |     NULL |
+|       7 | Speaker   |             4 |            2999 |        6 |
+|       8 | Blutooth  |             3 |          1999.5 |        6 |
+|      10 | Speaker   |             4 |            2999 |        9 |
+|      11 | Blutooth  |             3 |          1999.5 |        9 |
+|      13 | TV        |             2 |        22000.25 |       12 |
+|      14 | AC        |             3 |        35000.25 |       12 |
++---------+-----------+---------------+-----------------+----------+
+8 rows in set (0.00 sec)
